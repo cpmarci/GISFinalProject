@@ -19,9 +19,9 @@ from points500 a, poly10 b '''
 
 
 #Intersection set
-cur.execute(projintersect)
+cur.execute(testintersect)
 conn.commit()
-cur.execute(projintersect)
+cur.execute(testintersect)
 parseArray = cur.fetchall()
 #Test prints for parsing data
 #print(parseArray)
@@ -46,9 +46,9 @@ print(counter)
 f.close()
 
 # Within parameter for reading in data taken in by GIS
-cur.execute(projwithin)
+cur.execute(testwithin)
 conn.commit()
-cur.execute(projwithin)
+cur.execute(testwithin)
 parseArray2 = cur.fetchall()
 
 #print(parseArray)
