@@ -18,12 +18,12 @@ projwithin = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000)
 from points500 a, poly10 b '''
 
 
-
+#Intersection set
 cur.execute(testintersect)
 conn.commit()
 cur.execute(testintersect)
 parseArray = cur.fetchall()
-
+#Test prints for parsing data
 #print(parseArray)
 container = list()
 #print(parseArray[2])
@@ -45,7 +45,7 @@ print(container)
 print(counter)
 f.close()
 
-
+# Within parameter for reading in data taken in by GIS
 cur.execute(testwithin)
 conn.commit()
 cur.execute(testwithin)
