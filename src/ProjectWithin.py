@@ -5,9 +5,9 @@ Test implemenation for project
 
 import psycopg2
 
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
-testintersect = '''select a.gid,b.gid,ST_DWITHIN(a.geom, b.geom, 1000), a.geom
+testintersect = '''select a.gid,b.gid,ST_DWITHIN(a.geom, b.geom, 1000), ST_asTEXT(a.geom)
 from testdata a, testpoly b '''
 projintersect = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000)
 from points500 a, poly10 b '''
