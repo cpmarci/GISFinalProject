@@ -1,7 +1,7 @@
 '''
 Created on May 4, 2017
 
-@author: phili_000
+@author: Phil Marcille / Kyle Wong
 '''
 #!/usr/bin/python
 import sys;
