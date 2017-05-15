@@ -15,3 +15,14 @@
 #    )
 
 
+# 2. Table for Poly10
+
+# drop table poly10
+
+#create table poly10 (
+#    pyid Integer,
+#    pyname varchar(128),
+#    pyref Integer,
+#    pytime Integer,
+#    geom geometry(Polygon, 4269)
+#    )

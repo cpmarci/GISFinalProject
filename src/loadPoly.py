@@ -65,7 +65,7 @@ while arr[m]:
     coordinates = ("Polygon((%s))" % (finalstr))
    # geom = "ST_GeomFromText('POINT(" + str(x) + " " + str(y) + ")',4269)"
     #print x , y  
-    cur.execute("INSERT INTO poly10 (pyid,pyname,geom) VALUES (%s,trim(%s),ST_GeomFromText(%s,4269)) ",(counter,polyname,coordinates))
+    cur.execute("INSERT INTO poly10 (pyid,pyname,pyref,pytime,geom) VALUES (%s,trim(%s),%s,%s,ST_GeomFromText(%s,4269)) ",(counter,polyname,name1,time1,coordinates))
     #print 'counter : ', counter
     #conn.commit()
     #i = i+2
