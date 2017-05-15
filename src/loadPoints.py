@@ -47,7 +47,7 @@ while (arr[i] and arr[i+1]):
     coordinates = "POINT(%s %s)" % (x,y)
    # geom = "ST_GeomFromText('POINT(" + str(x) + " " + str(y) + ")',4269)"
     #print x , y  
-    cur.execute("INSERT INTO Points500 (pid,Pname,geom) VALUES (%s,trim(%s),ST_GeomFromText(%s,4269)) ",(counter,str(arr[i].strip())[:-1],coordinates))
+    cur.execute("INSERT INTO Points500 (pid,Pname,Prefnum,Ptime, geom) VALUES (%s,trim(%s),%s,%s,ST_GeomFromText(%s,4269)) ",(counter,str(arr[i].strip())[:-1],name1,time1,coordinates))
     print ('counter : ', counter)
     conn.commit()
     i = i+2
