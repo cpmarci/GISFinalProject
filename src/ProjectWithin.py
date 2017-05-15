@@ -17,6 +17,7 @@ cur.execute(testintersect)
 parseArray = cur.fetchall()
 
 #print(parseArray)
+#print(parseArray)
 container = list()
 print(parseArray[2])
 first = parseArray[2]
