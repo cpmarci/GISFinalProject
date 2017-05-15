@@ -2,33 +2,25 @@
 @author: Kyle Wong
 Test implemenation for project
 '''
-'''adding a line'''
+
 import psycopg2
+
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
-testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom)
-from testdata a, testpoly b '''
+testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
+from testpointtime a, testpolytime b '''
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom)
 from points500 a, poly10 b '''
-
-testwithin = '''select a.gid,b.gid,ST_DWITHIN(a.geom, b.geom, 1000), a.geom
-from testdata a, testpoly b '''
-projwithin = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000)
-from points500 a, poly10 b '''
-
-
-#Intersection set
 cur.execute(testintersect)
 conn.commit()
 cur.execute(testintersect)
 parseArray = cur.fetchall()
-#Test prints for parsing data
+
 #print(parseArray)
 container = list()
-#print(parseArray[2])
-##first = parseArray[2]
-##print(first[2])
+print(parseArray[2])
+first = parseArray[2]
+print(first[3])
 f = open("C:\Data\ProjectOutputIntersect.txt","w+")
 counter = 0
 for n in range(len(parseArray)):
@@ -36,38 +28,11 @@ for n in range(len(parseArray)):
     if holder[2] == True:
         ##print(holder[2])
         counter = counter + 1
-        writeline = str(holder[0])+":"+str(holder[1]) + "\n"
+        writeline = str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]) + "\n"
         f.write(writeline)
-        container.append(str(holder[0])+":"+str(holder[1]))
+        container.append(str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]))
     
     
 print(container)
 print(counter)
 f.close()
-
-# Within parameter for reading in data taken in by GIS
-cur.execute(testwithin)
-conn.commit()
-cur.execute(testwithin)
-parseArray2 = cur.fetchall()
-
-#print(parseArray)
-container2 = list()
-print(parseArray2[2])
-#first = parseArray2[2]
-#print(first[3])
-A = open("C:\Data\ProjectOutputWithin.txt","w+")
-counter2 = 0
-for n in range(len(parseArray2)):
-    holder = parseArray2[n]
-    if holder[2] == True:
-        ##print(holder[2])
-        counter2 = counter2 + 1
-        writeline = str(holder[0])+":"+str(holder[1]) + "\n"
-        A.write(writeline)
-        container2.append(str(holder[0])+":"+str(holder[1]))
-    
-    
-print(container2)
-print(counter2)
-A.close()
