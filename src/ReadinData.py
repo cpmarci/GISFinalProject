@@ -5,7 +5,7 @@ Test implemenation for project
 
 import psycopg2
 
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),ST_asTEXT(a.geom)
@@ -22,6 +22,7 @@ container = list()
 print(parseArray[2])
 first = parseArray[2]
 print(first[3])
+
 f = open("C:\Data\ProjectOutputIntersect.txt","w+")
 counter = 0
 for n in range(len(parseArray)):
@@ -34,7 +35,11 @@ for n in range(len(parseArray)):
         container.append(str(holder[0])+":"+str(holder[1]))
         holderTemp = str(holder[3])
         print("'" + holderTemp + "'")
+
         tempOne = "INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4629))"#, (holderTemp))
+
+        tempOne = "INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4269))"#, (holderTemp))
+
         print(tempOne)
         cur.execute(tempOne)
         conn.commit()

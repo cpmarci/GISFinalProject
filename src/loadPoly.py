@@ -8,10 +8,10 @@ import sys;
 import psycopg2;
 import xml.etree.ElementTree as ET;
 
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
 print ("Opened database successfully")
 
-tree = ET.parse('C:\Data\TrainingDataSet\TrainingDataSet\poly10.txt')
+tree = ET.parse('C:\Data\TrainingDataSet\poly10.txt')
 root = tree.getroot()
 arr = []
 arr.append(root.text)
@@ -51,6 +51,13 @@ while arr[m]:
     cur = conn.cursor()
     i = 0
     polyname = str(arr[m])[:-1].strip()
+    genericPoly,name1,time1 = polyname.split(":")
+    
+    #this is testing on how to get the name and the time
+    print(polyname)
+    print(genericPoly)
+    print(name1)
+    print(time1)
     #while (arr[i] and arr[i+1]):
     #counter = counter + 1
     #x = arr[i+1].split(',')[0]
@@ -58,7 +65,7 @@ while arr[m]:
     coordinates = ("Polygon((%s))" % (finalstr))
    # geom = "ST_GeomFromText('POINT(" + str(x) + " " + str(y) + ")',4269)"
     #print x , y  
-    cur.execute("INSERT INTO poly10 (pyid,pyname,geom) VALUES (%s,trim(%s),ST_GeomFromText(%s,4269)) ",(counter,polyname,coordinates))
+    cur.execute("INSERT INTO poly10 (pyid,pyname,pyref,pytime,geom) VALUES (%s,trim(%s),%s,%s,ST_GeomFromText(%s,4269)) ",(counter,polyname,name1,time1,coordinates))
     #print 'counter : ', counter
     #conn.commit()
     #i = i+2
