@@ -33,6 +33,14 @@ cur = conn.cursor()
 i = 0
 counter = 0
 while (arr[i] and arr[i+1]):
+    
+    #pulling seperate info to get time as well / will still need to change the table in db
+    fullNameInfo = str(arr[i].strip())[:-1]
+    pointGeneric,name1,time1 = fullNameInfo.split(":")
+    print(pointGeneric)
+    print(name1)
+    print(time1)
+    
     counter = counter + 1
     x = arr[i+1].split(',')[0]
     y = arr[i+1].split(',')[1]

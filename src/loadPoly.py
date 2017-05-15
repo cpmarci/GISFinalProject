@@ -51,6 +51,13 @@ while arr[m]:
     cur = conn.cursor()
     i = 0
     polyname = str(arr[m])[:-1].strip()
+    genericPoly,name1,time1 = polyname.split(":")
+    
+    #this is testing on how to get the name and the time
+    print(polyname)
+    print(genericPoly)
+    print(name1)
+    print(time1)
     #while (arr[i] and arr[i+1]):
     #counter = counter + 1
     #x = arr[i+1].split(',')[0]
