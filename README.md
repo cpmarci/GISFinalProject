@@ -26,3 +26,15 @@ create table poly10 (
     pytime Integer,
     geom geometry(Polygon, 4269)
     )
+    
+    
+ 3.)CREATE INDEX (R tree) for poly10
+ drop index pyref
+create index pyref on poly10 using gist(geom)
+vacuum analyze poly10
+
+4.)Create index (R tree) for points 500
+
+create index prefnum on points500 using gist(geom)
+vacuum analyze points500
+
