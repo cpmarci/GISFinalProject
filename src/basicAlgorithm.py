@@ -4,8 +4,11 @@ Test implemenation for project
 '''
 '''adding a line'''
 import psycopg2
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
+import time
+start = time.time()
+
+#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom)
 from testdata a, testpoly b '''
@@ -19,9 +22,9 @@ from points500 a, poly10 b '''
 
 
 #Intersection set
-cur.execute(testintersect)
+cur.execute(projintersect)
 conn.commit()
-cur.execute(testintersect)
+cur.execute(projintersect)
 parseArray = cur.fetchall()
 #Test prints for parsing data
 #print(parseArray)
@@ -46,9 +49,9 @@ print(counter)
 f.close()
 
 # Within parameter for reading in data taken in by GIS
-cur.execute(testwithin)
+cur.execute(projwithin)
 conn.commit()
-cur.execute(testwithin)
+cur.execute(projwithin)
 parseArray2 = cur.fetchall()
 
 #print(parseArray)
@@ -70,4 +73,6 @@ for n in range(len(parseArray2)):
     
 print(container2)
 print(counter2)
+end = time.time()
+print(end - start)
 A.close()
