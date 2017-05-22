@@ -85,7 +85,7 @@ for n in range(len(parseArray)):
         poly10[str(holder[1])].append(holder[2])
 
 
-
+print("Here is viewable data")
 print("----------------------------------")
 print("poly1 dictionary")
 for keys,values in poly1.items():

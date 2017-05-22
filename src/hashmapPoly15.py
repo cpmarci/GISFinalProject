@@ -28,6 +28,11 @@ poly7 = {}
 poly8 = {}
 poly9 = {}
 poly10 = {}
+poly11 = {}
+poly12 = {}
+poly13 = {}
+poly14 = {}
+poly15 = {}
 
 
 for n in range(len(parseArray)):
