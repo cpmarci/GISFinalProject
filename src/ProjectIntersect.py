@@ -10,13 +10,11 @@ cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
 
-
-
-projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom)
+projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
 from points500 a, poly10 b '''
-cur.execute(testintersect)
+cur.execute(projintersect)
 conn.commit()
-cur.execute(testintersect)
+cur.execute(projintersect)
 parseArray = cur.fetchall()
 
 #print(parseArray)
