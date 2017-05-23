@@ -12,7 +12,10 @@ This is a simple algorithm that slices off every 4th vertice and adds it to a fi
 
 import psycopg2
 
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+fName = input('Database password: ')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
+
+#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
 cur = conn.cursor()
 
 getPolyLIne = '''SELECT ST_DumpPoints(ST_ExteriorRing(ST_Buffer(geom, .1)))

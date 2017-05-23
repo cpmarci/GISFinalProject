@@ -5,7 +5,10 @@ Test implemenation for project
 
 import psycopg2
 
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
+fName = input('Database password: ')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
+
+#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),ST_asTEXT(a.geom)

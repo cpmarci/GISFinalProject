@@ -1,11 +1,14 @@
 '''
-@author: Kyle Wong
+@author: Kyle Wong / C. Philip Marcille
 Test implemenation for project
 '''
 
 import psycopg2
 
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+fName = input('Database password: ')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
+
+#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''

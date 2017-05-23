@@ -5,7 +5,11 @@ Test implemenation for project
 import time
 import psycopg2
 start = time.time()
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+
+fName = input('Database password: ')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
+
+#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_DWITHIN(a.geom, b.geom, 1000), a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
