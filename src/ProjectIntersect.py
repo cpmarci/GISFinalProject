@@ -5,19 +5,16 @@ Test implemenation for project
 import time
 import psycopg2
 start = time.time()
-
-fName = input('Database password: ')
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
 
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
-from points500 a, poly10 b '''
-cur.execute(testintersect)
+from points500 a, poly10 b where a.ptime < b.pytime'''
+cur.execute(projintersect)
 conn.commit()
-cur.execute(testintersect)
+cur.execute(projintersect)
 parseArray = cur.fetchall()
 
 #print(parseArray)
