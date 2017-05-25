@@ -1,20 +1,27 @@
 '''
 @author: Kyle Wong
 Test implemenation for project
+Poly 10 30 instances
+points 500 39289
+testdata 25 instances
+testpoly 8 instances
 '''
 import time
 import psycopg2
 start = time.time()
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
 cur = conn.cursor()
+
+
+
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
 
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
 from points500 a, poly10 b where a.ptime < b.pytime'''
-cur.execute(projintersect)
+cur.execute(testintersect)
 conn.commit()
-cur.execute(projintersect)
+cur.execute(testintersect)
 parseArray = cur.fetchall()
 
 #print(parseArray)
