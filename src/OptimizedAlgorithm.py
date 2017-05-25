@@ -9,7 +9,8 @@ testpoly 8 instances
 import time
 import psycopg2
 start = time.time()
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+fName = input('Database password: ')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 cur = conn.cursor()
 
 first = 1
