@@ -33,11 +33,12 @@ for i in range(testdata):
     conn.commit()
     cur.execute(testintersect2)
     parseArray = cur.fetchall()
-    print(parseArray)
+    
     
     if len(parseArray) != 0:
-            print(str(parseArray[1])+"-"+str(parseArray[2]))
-    
+           # print(str(parseArray[2])+"-"+str(parseArray[3]) +":" + str(parseArray[4]) +"-"+str(parseArray[5]))
+           print(parseArray)
+           print(parseArray[0])
 end = time.time()
 
 

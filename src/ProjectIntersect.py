@@ -12,9 +12,9 @@ from testpointtime a, testpolytime b '''
 
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
 from points500 a, poly10 b where a.ptime < b.pytime'''
-cur.execute(projintersect)
+cur.execute(testintersect)
 conn.commit()
-cur.execute(projintersect)
+cur.execute(testintersect)
 parseArray = cur.fetchall()
 
 #print(parseArray)
