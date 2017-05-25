@@ -33,9 +33,9 @@ for n in range(len(parseArray)):
     if holder[2] == True:
         ##print(holder[2])
         counter = counter + 1
-        writeline = str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]) + "\n"
+        writeline = str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6])+"="+str(holder[7]) + "\n"
         f.write(writeline)
-        container.append(str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]))
+        container.append(str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6])+"="+ str(holder[7]) )
     
     
 #print(container)
@@ -60,9 +60,9 @@ for n in range(len(parseArray2)):
     if holder[2] == True:
         ##print(holder[2])
         counter2 = counter2 + 1
-        writeline = str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]) + "\n"
+        writeline = str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]) +"="+ str(holder[7]) + "\n"
         A.write(writeline)
-        container.append(str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]))
+        container.append(str(holder[3])+"-"+str(holder[4]) +":" + str(holder[5]) +"-"+str(holder[6]) +"="+ str(holder[7]))
     
     
 print(counter2)
