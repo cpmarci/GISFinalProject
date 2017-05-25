@@ -36,9 +36,11 @@ for i in range(testdata):
     
     
     if len(parseArray) != 0:
-           # print(str(parseArray[2])+"-"+str(parseArray[3]) +":" + str(parseArray[4]) +"-"+str(parseArray[5]))
-           print(parseArray)
+           # print(str(parseArray[2])+"-"(+str(parseArray[3]) +":" + str(parseArray[4]) +"-"+str(parseArray[5]))
+           holder = parseArray[0]
            print(parseArray[0])
+           print(str(holder[2])+"-"+str(holder[3]) +":" + str(holder[4]) +"-"+str(holder[5]))
+           print(type(parseArray[0]))
 end = time.time()
 
 
