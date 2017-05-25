@@ -15,7 +15,7 @@ cur = conn.cursor()
 first = 1
 
 testintersect = ('''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
-from testpointtime a, testpolytime b WHERE a.gid={0} '''. format(first))
+from testpointtime a, testpolytime b WHERE a.gid={0} and a.time < b.time '''. format(first))
 
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
 from points500 a, poly10 b where a.ptime < b.pytime'''
