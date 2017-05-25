@@ -8,10 +8,13 @@ testpoly 8 instances
 '''
 import time
 import psycopg2
-start = time.time()
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
-cur = conn.cursor()
+#start = time.time()
 
+#changing this again so we can both push without rewriting over everything time and again.
+fName = input('Database password: ')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
+cur = conn.cursor()
+start = time.time()
 
 
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
