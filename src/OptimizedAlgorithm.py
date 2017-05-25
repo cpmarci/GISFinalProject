@@ -18,11 +18,6 @@ testdata = 25
 testpoly = 8
 points500 =39289
 poly10 = 30
-testintersect = ('''select a.gid,b.gid,a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
-from testpointtime a, testpolytime b WHERE a.gid={0} and a.time > b.time and ST_Intersects(a.geom, b.geom) = True '''. format(first))
-
-projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
-from points500 a, poly10 b where a.ptime < b.pytime'''
 
 
 container = list()
