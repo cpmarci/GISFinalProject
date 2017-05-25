@@ -18,12 +18,18 @@ testdata = 25
 testpoly = 8
 points500 =39289
 poly10 = 30
+testintersect = ('''select a.gid,b.gid,a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
+from testpointtime a, testpolytime b WHERE a.gid={0} and a.time > b.time and ST_Intersects(a.geom, b.geom) = True '''. format(first))
 
+projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
+from points500 a, poly10 b where a.ptime < b.pytime'''
 
+f = open("C:\Data\ProjectOutputIntersect.txt","w+")
 container = list()
+counter = 0
 for i in range(testdata):
     testintersect2 = ('''select a.gid,b.gid,a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
-    from testpointtime a, testpolytime b WHERE a.gid={0} and a.time > b.time and ST_Intersects(a.geom, b.geom) = True '''. format(i))
+    from testpointtime a, testpolytime b WHERE a.gid={0} and a.time >= b.time and ST_Intersects(a.geom, b.geom) = True '''. format(i))
     cur.execute(testintersect2)
     conn.commit()
     cur.execute(testintersect2)
@@ -31,13 +37,16 @@ for i in range(testdata):
     
     
     if len(parseArray) != 0:
-           # print(str(parseArray[2])+"-"(+str(parseArray[3]) +":" + str(parseArray[4]) +"-"+str(parseArray[5]))
-           holder = parseArray[0]
-           print(parseArray[0])
-           print(str(holder[2])+"-"+str(holder[3]) +":" + str(holder[4]) +"-"+str(holder[5]))
-           print(type(parseArray[0]))
+    # print(str(parseArray[2])+"-"(+str(parseArray[3]) +":" + str(parseArray[4]) +"-"+str(parseArray[5]))
+        holder = parseArray[0]
+        counter = counter + 1
+        writeline = str(holder[2])+"-"+str(holder[3]) +":" + str(holder[4]) +"-"+str(holder[5]) + "\n"
+        f.write(writeline)
+        print(str(holder[2])+"-"+str(holder[3]) +":" + str(holder[4]) +"-"+str(holder[5]))
+        #print(type(parseArray[0]))
 end = time.time()
 
-
+print(counter)
 
 print(end- start)
+f.close()
