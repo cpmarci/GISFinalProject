@@ -1,7 +1,5 @@
 '''
-@author: Kyle Wong
 HW1A
-
 Python with psycopg2 which allows for importing and storing of geometric data from PSQL gis
 Thus allowing for parsing and creation of algorithms that seperate and allow for
 runnable code to be applied.

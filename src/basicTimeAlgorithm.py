@@ -1,5 +1,4 @@
 '''
-@author: Kyle Wong / C. Philip Marcille
 Test implemenation for project
 '''
 import time

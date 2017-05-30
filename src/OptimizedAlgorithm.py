@@ -1,5 +1,4 @@
 '''
-@author: Kyle Wong
 Test implemenation for project
 Poly 10 30 instances
 points 500 39289

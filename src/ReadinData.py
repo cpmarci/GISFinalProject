@@ -1,5 +1,4 @@
 '''
-@author: Kyle Wong
 Test implemenation for project
 '''
 
