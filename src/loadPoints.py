@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET;
 
 
 counter = 0
-tree = ET.parse('C:\Data\TrainingDataSet\points500.txt')
+tree = ET.parse('C:\Data\TrainingDataSet\TrainingDataSet\points500.txt')
 root = tree.getroot()
 arr = []
 arr.append(root.text)
