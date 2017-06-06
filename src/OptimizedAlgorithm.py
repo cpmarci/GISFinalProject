@@ -4,6 +4,11 @@ Poly 10 30 instances
 points 500 39289
 testdata 25 instances
 testpoly 8 instances
+
+
+This is our Individual Per PID algorithm that cycles through
+Time takes over 20 Minutes
+This was our 3 attempt at an algorithm
 '''
 import time
 import psycopg2
