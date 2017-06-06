@@ -38,3 +38,28 @@ vacuum analyze poly10
 create index prefnum on points500 using gist(geom)
 vacuum analyze points500
 
+5.)Table for points1000
+
+ drop table Points1000
+
+ create table Points1000 (
+    pid Integer,
+    Pname varchar(128),
+    Prefnum Integer,
+    Ptime Integer,
+    geom geometry(Point, 4269)
+   )
+
+
+6.)Table for Poly15
+
+ drop table poly15
+
+create table poly15 (
+    pyid Integer,
+    pyname varchar(128),
+    pyref Integer,
+    pytime Integer,
+    geom geometry(Polygon, 4269)
+    )
+

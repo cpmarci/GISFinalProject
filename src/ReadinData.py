@@ -41,7 +41,7 @@ for n in range(len(parseArray)):
         tempOne = "INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4269))"
         cur.execute(tempOne)
         conn.commit()
-#commiting the request aboe, printing for checks below.  Complete once finished,
+#commiting the request above, printing for checks below.  Complete once finished,
 #printing the full every point to poly that meets conditional intersect
 print("Point:Poly that intersect")
 print(container)
