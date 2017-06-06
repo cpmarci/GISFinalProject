@@ -2,16 +2,22 @@
 BASIC ALGORITHM
 Test implemenation for project
 '''
-'''adding a line'''
+'''
+First attempt 
+Without time constraint. Testing off data
+General pull all from GIS than filtering it out with a stimple true boolean check
+'''
 import psycopg2
 import time
 start = time.time()
 
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
+# allows for different users to actually use the data
+
+
 fName = input('Database password: ')
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 cur = conn.cursor()
+# Project information 
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom)
 from testdata a, testpoly b '''
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom)
@@ -23,13 +29,12 @@ projwithin = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000)
 from points500 a, poly10 b '''
 
 
-#Intersection set
+#Intersection loop beginning
 cur.execute(projintersect)
 conn.commit()
 cur.execute(projintersect)
 parseArray = cur.fetchall()
-#Test prints for parsing data
-#print(parseArray)
+#Creates the container and begins the intersection statement.
 container = list()
 
 f = open("C:\Data\ProjectOutputIntersect.txt","w+")
@@ -54,11 +59,11 @@ conn.commit()
 cur.execute(projwithin)
 parseArray2 = cur.fetchall()
 
-#print(parseArray)
+#Give a data example for the output
 container2 = list()
 print(parseArray2[2])
-#first = parseArray2[2]
-#print(first[3])
+#Here is our output for within
+#Similiar structure to intersection just differing commands
 A = open("C:\Data\ProjectOutputWithin.txt","w+")
 counter2 = 0
 for n in range(len(parseArray2)):
@@ -71,7 +76,7 @@ for n in range(len(parseArray2)):
         container2.append(str(holder[0])+":"+str(holder[1]))
     
     
-#print(container2)
+
 print(counter2)
 end = time.time()
 print(end - start)
