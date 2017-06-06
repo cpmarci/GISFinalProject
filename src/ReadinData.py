@@ -1,54 +1,52 @@
 '''
 Test implemenation for project
+This is finding all practice points that intersect our practice polygon.
+WE Load the practice data into testIntersection, this is not used for any of our actual algorithms
+For inserting it into qgis for TESTING ONLY IF WOULD WORK.  
 '''
 
 import psycopg2
-
+#password for accessing database request
 fName = input('Database password: ')
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
 cur = conn.cursor()
+
+#This is for getting intersection of test points and test polygons to check basic attempt for project
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),ST_asTEXT(a.geom)
 from testdata a, testpoly b '''
-projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom),a.geom
-from points500 a, poly10 b '''
+
 cur.execute(testintersect)
 conn.commit()
 cur.execute(testintersect)
 parseArray = cur.fetchall()
 
-#print(parseArray)
+#Parsing data to get correct test values seperated to request an insert into
 container = list()
-print(parseArray[2])
 first = parseArray[2]
-print(first[3])
-
-f = open("C:\Data\ProjectOutputIntersect.txt","w+")
+#writing to a test file
+f = open("C:\Data\ProjectTESTOutputIntersect.txt","w+")
 counter = 0
+#looping through for each insert into while not nil
 for n in range(len(parseArray)):
     holder = parseArray[n]
+    #conditional to state if intersects add, else do nothing
     if holder[2] == True:
-        ##print(holder[2])
         counter = counter + 1
         writeline = str(holder[0])+":"+str(holder[1]) + "\n"
         f.write(writeline)
         container.append(str(holder[0])+":"+str(holder[1]))
         holderTemp = str(holder[3])
-        print("'" + holderTemp + "'")
-
-        tempOne = "INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4629))"#, (holderTemp))
-
-        tempOne = "INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4269))"#, (holderTemp))
-
-        print(tempOne)
+        tempOne = "INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4269))"
         cur.execute(tempOne)
         conn.commit()
-
-        #cur.execute("INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText(%s, 4629))", (holderTemp))
-
-              #      INSERT INTO testIntersection (geom) VALUES (ST_GeomFromText('POINT(-778.187625387439 165.877570710828)', 4629))
+#commiting the request aboe, printing for checks below.  Complete once finished,
+#printing the full every point to poly that meets conditional intersect
+print("Point:Poly that intersect")
 print(container)
+#print total amount added
+print("Total amount of intersects in test data")
 print(counter)
+print("Completed")
 f.close()
