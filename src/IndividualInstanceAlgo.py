@@ -16,28 +16,25 @@ start = time.time()
 fName = input('Database password: ')
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 cur = conn.cursor()
-
+# counted instances since auto detecting wasted more time
 first = 5
 testdata = 25
 testpoly = 8
 points500 =39289
 poly10 = 30
-#testintersect = ('''select a.gid,b.gid,a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
-#from testpointtime a, testpolytime b WHERE a.gid={0} and a.time > b.time and ST_Intersects(a.geom, b.geom) = True '''. format(first))
-
-#projintersect = ('''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
-#from points500 a, poly10 b WHERE a.pid={0} and a.ptime > b.pytime and ST_Intersects(a.geom, b.geom) = true'''. format(first))
-
-#projintersect3 = ('''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
-#from points500 a, poly10 b where a.pid{0} a.ptime > b.pytime and ST_Intersects(a.geom, b.geom) = true'''. format(first))
 
 
 f = open("C:\Data\ProjectOutputIntersect.txt","w+")
 container = list()
 counter = 0
+'''
+Just tested with a basic setup that took in the preprogrammed number of stances 
+Below is the main loop for intersection 
+Cycling through each pid and checking if the geoms intersect for time
+'''
 for i in range(points500):
-    #testintersect2 = ('''select a.gid,b.gid,a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
-    #from testpointtime a, testpolytime b WHERE a.gid={0} and a.time >= b.time and ST_Intersects(a.geom, b.geom) = True '''. format(i))
+
+    
     projintersect2 = ('''select a.pid,b.pyid, a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
     from points500 a, poly10 b WHERE a.pid={0} and a.ptime >= b.pytime and ST_Intersects(a.geom, b.geom) = True'''. format(i))
     cur.execute(projintersect2)
@@ -56,6 +53,10 @@ for i in range(points500):
 
 
 print(counter)
+''' 
+Here is the within loop
+
+'''
 A = open("C:\Data\ProjectOutputWithin.txt","w+")
 counter2 = 0
 for k in range(testdata):
