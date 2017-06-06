@@ -1,4 +1,5 @@
 '''
+BASIC TIME ALGORITHM
 Test implemenation for project
 '''
 import time
@@ -7,7 +8,6 @@ import psycopg2
 fName = input('Database password: ')
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 start = time.time()
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
@@ -20,7 +20,6 @@ cur.execute(projintersect)
 conn.commit()
 cur.execute(projintersect)
 parseArray = cur.fetchall()
-
 #print(parseArray)
 container = list()
 print(parseArray[2])
@@ -40,18 +39,15 @@ for n in range(len(parseArray)):
 #print(container)
 print(counter)
 f.close()
-
 # Within parameter for reading in data taken in by GIS
 cur.execute(projwithin)
 conn.commit()
 cur.execute(projwithin)
 parseArray2 = cur.fetchall()
-
 #print(parseArray)
 container2 = list()
 print(parseArray2[2])
 #first = parseArray2[2]
-#print(first[3])
 A = open("C:\Data\ProjectOutputWithin.txt","w+")
 counter2 = 0
 for n in range(len(parseArray2)):

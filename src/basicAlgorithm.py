@@ -1,4 +1,5 @@
 '''
+BASIC ALGORITHM
 Test implemenation for project
 '''
 '''adding a line'''
@@ -7,7 +8,9 @@ import time
 start = time.time()
 
 #conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
+#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
+fName = input('Database password: ')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom)
 from testdata a, testpoly b '''
@@ -28,9 +31,7 @@ parseArray = cur.fetchall()
 #Test prints for parsing data
 #print(parseArray)
 container = list()
-#print(parseArray[2])
-##first = parseArray[2]
-##print(first[2])
+
 f = open("C:\Data\ProjectOutputIntersect.txt","w+")
 counter = 0
 for n in range(len(parseArray)):
@@ -43,7 +44,7 @@ for n in range(len(parseArray)):
         container.append(str(holder[0])+":"+str(holder[1]))
     
     
-print(container)
+#print(container)
 print(counter)
 f.close()
 
@@ -70,7 +71,7 @@ for n in range(len(parseArray2)):
         container2.append(str(holder[0])+":"+str(holder[1]))
     
     
-print(container2)
+#print(container2)
 print(counter2)
 end = time.time()
 print(end - start)
