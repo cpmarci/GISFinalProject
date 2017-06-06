@@ -1,6 +1,10 @@
 '''
 BASIC TIME ALGORITHM
+Fourth algorithm written
 Test implemenation for project
+This is our rolled together Time algorithm
+With an actual filter
+
 '''
 import time
 import psycopg2
@@ -9,6 +13,7 @@ fName = input('Database password: ')
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 start = time.time()
 cur = conn.cursor()
+#Add time filter with the time constraint
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
@@ -24,8 +29,9 @@ parseArray = cur.fetchall()
 container = list()
 print(parseArray[2])
 
-f = open("C:\Data\ProjectOutputIntersect.txt","w+")
+f = open("C:\Data\ProjectOutputTimeIntersect.txt","w+")
 counter = 0
+#Loop for actual Intersection with time constraint and parsing
 for n in range(len(parseArray)):
     holder = parseArray[n]
     if holder[2] == True:
@@ -47,8 +53,8 @@ parseArray2 = cur.fetchall()
 #print(parseArray)
 container2 = list()
 print(parseArray2[2])
-#first = parseArray2[2]
-A = open("C:\Data\ProjectOutputWithin.txt","w+")
+#Within Loop for Time and constraints
+A = open("C:\Data\ProjectOutputTimeWithin.txt","w+")
 counter2 = 0
 for n in range(len(parseArray2)):
     holder = parseArray2[n]
