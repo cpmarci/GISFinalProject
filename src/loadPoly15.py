@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET;
 
 fName = input('Database password: ')
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
-#conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+
 print ("Opened database successfully")
 
 tree = ET.parse('C:\Data\TrainingDataSet\TrainingDataSet\poly15.txt')
