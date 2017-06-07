@@ -1,4 +1,3 @@
-
 '''
 Test implemenation for project
 This is finding all practice points that intersect our practice polygon.
@@ -15,9 +14,8 @@ cur = conn.cursor()
 cur = conn.cursor()
 
 
-
 testintersect = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
-from points1000 a, poly15 b  WHERE a.ptime >= b.pytime and ST_DWITHIN(a.geom, b.geom, 1000)= True '''
+from points1000 a, poly15 b  WHERE ST_DWITHIN(a.geom, b.geom, 1000)= True '''
 
 cur.execute(testintersect)
 conn.commit()
@@ -42,7 +40,7 @@ for n in range(len(parseArray)):
         f.write(writeline)
         container.append(str(holder[0])+":"+str(holder[1]))
         holderTemp = str(holder[7])
-        tempOne = "INSERT INTO p1000poly15Within (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4269))"
+        tempOne = "INSERT INTO p1000poly15WithinNoTime (geom) VALUES (ST_GeomFromText("+ "'" + holderTemp + "'" + ", 4269))"
         cur.execute(tempOne)
         conn.commit()
 #commiting the request above, printing for checks below.  Complete once finished,
