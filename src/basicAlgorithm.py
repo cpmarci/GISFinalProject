@@ -17,6 +17,7 @@ start = time.time()
 fName = input('Database password: ')
 conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= fName)
 cur = conn.cursor()
+start = time.time()
 # Project information 
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom)
 from testdata a, testpoly b '''

@@ -10,7 +10,7 @@ Changing the fetch time
 import time
 import psycopg2
 start = time.time()
-conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
+conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'jeep1999')
 cur = conn.cursor()
 
 # Our test data
@@ -18,13 +18,14 @@ cur = conn.cursor()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
 
+projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
+from points500 a, poly10 b WHERE a.ptime >= b.pytime'''
 
-
-projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom)
-from points500 a, poly10 b '''
-cur.execute(testintersect)
+projwithin = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
+from points500 a, poly10 b  WHERE a.ptime >= b.pytime'''
+cur.execute(projintersect)
 conn.commit()
-cur.execute(testintersect)
+cur.execute(projintersect)
 parseArray = cur.fetchall()
 
 #print(parseArray)
