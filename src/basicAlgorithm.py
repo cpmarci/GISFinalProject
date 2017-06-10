@@ -9,7 +9,7 @@ General pull all from GIS than filtering it out with a stimple true boolean chec
 '''
 import psycopg2
 import time
-start = time.time()
+#start = time.time()
 
 # allows for different users to actually use the data
 
@@ -22,12 +22,12 @@ start = time.time()
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom)
 from testdata a, testpoly b '''
 projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom)
-from points500 a, poly10 b '''
+from points1000 a, poly15 b '''
 
 testwithin = '''select a.gid,b.gid,ST_DWITHIN(a.geom, b.geom, 1000), a.geom
 from testdata a, testpoly b '''
 projwithin = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000)
-from points500 a, poly10 b '''
+from points1000 a, poly15 b '''
 
 
 #Intersection loop beginning
@@ -80,5 +80,8 @@ for n in range(len(parseArray2)):
 
 print(counter2)
 end = time.time()
+print('-------Counter------')
+print(counter2)
+print('-------Time------')
 print(end - start)
 A.close()

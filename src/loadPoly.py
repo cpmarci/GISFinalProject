@@ -11,7 +11,7 @@ conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user
 #conn = psycopg2.connect(dbname = 'postgres', host= 'localhost', port= 5432, user = 'postgres',password= 'dragon01')
 print ("Opened database successfully")
 
-tree = ET.parse('C:\Data\TrainingDataSet\poly10.txt')
+tree = ET.parse('C:\Data\TrainingDataSet\TrainingDataSet\poly10.txt')
 root = tree.getroot()
 arr = []
 arr.append(root.text)

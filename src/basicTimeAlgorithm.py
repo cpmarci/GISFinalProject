@@ -16,11 +16,11 @@ cur = conn.cursor()
 #Add time filter with the time constraint
 testintersect = '''select a.gid,b.gid,ST_Intersects(a.geom, b.geom),a.point, a.time, b.polygon, b.time, ST_asTEXT(a.geom)
 from testpointtime a, testpolytime b '''
-projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
-from points500 a, poly10 b WHERE a.ptime >= b.pytime and ST_Intersects(a.geom, b.geom) = True'''
+projintersect = '''select a.pid,b.pyid,ST_Intersects(a.geom, b.geom), a.prefnum1, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
+from points1000 a, poly10 b WHERE a.ptime >= b.pytime and ST_Intersects(a.geom, b.geom) = True'''
 
-projwithin = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000), a.prefnum, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
-from points500 a, poly10 b  WHERE a.ptime >= b.pytime and ST_DWITHIN(a.geom, b.geom, 1000)= True '''
+projwithin = '''select a.pid,b.pyid,ST_DWITHIN(a.geom, b.geom, 1000), a.prefnum1, a.ptime, b.pyref, b.pytime, ST_asText(a.geom)
+from points1000 a, poly10 b  WHERE a.ptime >= b.pytime and ST_DWITHIN(a.geom, b.geom, 1000)= True '''
 cur.execute(projintersect)
 conn.commit()
 cur.execute(projintersect)
@@ -43,7 +43,7 @@ for n in range(len(parseArray)):
     
     
 #print(container)
-print(counter)
+#print(counter)
 f.close()
 # Within parameter for reading in data taken in by GIS
 cur.execute(projwithin)

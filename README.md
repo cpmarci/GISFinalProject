@@ -45,7 +45,7 @@ vacuum analyze points500
  create table Points1000 (
     pid Integer,
     Pname varchar(128),
-    Prefnum Integer,
+    Prefnum1 Integer,
     Ptime Integer,
     geom geometry(Point, 4269)
    )
@@ -58,8 +58,18 @@ vacuum analyze points500
 create table poly15 (
     pyid Integer,
     pyname varchar(128),
-    pyref Integer,
+    pyref1 Integer,
     pytime Integer,
     geom geometry(Polygon, 4269)
     )
 
+7.)CREATE INDEX (R tree) for poly15
+ drop index pyref
+ 
+create index pyref1 on poly15 using gist(geom)
+vacuum analyze poly15
+
+8.)Create index (R tree) for points 1000
+
+create index prefnum1 on points1000 using gist(geom)
+vacuum analyze points1000
