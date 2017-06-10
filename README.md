@@ -1,7 +1,5 @@
-# gisFinalProject
-
+# gisFinalProject Instructions
 #create following tables
-
 # 1. Table for Points500
     
  drop table Points500
